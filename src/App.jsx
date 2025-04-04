@@ -1,64 +1,39 @@
-import './App.css'
-import Ejemplo from './Components/Ejemplo'
-import Estudiante from './Components/Estudiante'
-import Estudi from './Components/Estudiante'
-const titleStyle = {
-  backgroundColor: 'green',
-  color: 'black',
-  fontSize: '20px',
-  padding: 100,
-}
+import { useState } from "react";
+import { Boton, Header, ItemListContainer } from "./Components";
 
 function App() {
-  //Parte lógica sintaxis Js
+  const [count, setCount] = useState(10);
+  const [texto, setTexto] = useState("Hola!");
 
-  const auto = {
-    name: '',
-    marca: 'Fiat',
-    modelo: '600',
-    status: 'ok',
-    color: 'purple',
-  }
-  const arr = ['Flor', 'Oclivar', 'Analia']
+  const aumentar = () => {
+    setCount(count + 1);
+  };
 
-  // const marca = auto.marca
-  // const modelo = auto.modelo
-  // const color = auto.color
+  const restar = () => {
+    if (count - 1 >= 0) setCount(count - 1);
+  };
 
-  const { marca, modelo, color } = auto
-  console.log(marca, modelo, color)
-
-  // const name1 = arr[0]
-  // const name2 = arr[1]
-  // const name3 = arr[2]
-
-  const [name1, name2, name3] = arr
-  console.log('flor: ', name1, ' Oclivar: ', name2, ' Analia: ', name3)
-
-  const saludo = () => {
-    console.log('Hola que tal?')
-  }
+  const despedirme = () => {
+    setTexto("Chau!");
+  };
 
   return (
-    <div>
-      {/* Sintaxis HTML */}
-      <h1 style={titleStyle}>Volvemos a las 20:17!!</h1>
-      <h1>Hola coders!</h1>
-      <h2
-        className='titulo2'
-        style={{
-          backgroundColor: color == 'red' ? 'red' : 'white',
-          color: color === 'red' ? 'white' : 'black',
-        }}
-      >
-        {marca} - {modelo}
-      </h2>
-      <button onClick={saludo}>Saludar</button>
-      <h3>{color}</h3>
-      <Ejemplo />
-      <Estudiante />
-    </div>
-  )
+    <>
+      <Header />
+      <Boton
+        type={"success"}
+        style={{ width: "200px" }}
+        label={"Aumentar Count"}
+        onClick={aumentar}
+      />
+      <Boton label={"Restar Count"} type={"danger"} onClick={restar} />
+      <h1>Hola coders! {count}</h1>
+      <h1>{texto}</h1>
+      <Boton label={"Despedirme"} type={"primary"} onClick={despedirme} />
+
+      <ItemListContainer />
+    </>
+  );
 }
 
-export default App
+export default App;
