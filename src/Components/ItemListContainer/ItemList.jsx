@@ -1,11 +1,11 @@
-import React from "react";
-import Item from "./Item";
+import React from 'react'
+import Item from './Item'
 
 const ItemList = ({ productos }) => {
-  console.log(productos);
+  // console.log(productos);
   return (
     <div>
-      {productos.map((e) => (
+      {productos.map(e => (
         <Item
           key={e.id}
           titulo={e.titulo}
@@ -15,7 +15,7 @@ const ItemList = ({ productos }) => {
         />
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default ItemList;
+export default ItemList

@@ -1,39 +1,20 @@
-import { useState } from "react";
-import { Boton, Header, ItemListContainer } from "./Components";
+import { useState } from 'react'
+import { Boton, Header, ItemListContainer } from './Components'
+import Counter from './Components/Counter'
 
 function App() {
-  const [count, setCount] = useState(10);
-  const [texto, setTexto] = useState("Hola!");
-
-  const aumentar = () => {
-    setCount(count + 1);
-  };
-
-  const restar = () => {
-    if (count - 1 >= 0) setCount(count - 1);
-  };
-
-  const despedirme = () => {
-    setTexto("Chau!");
-  };
-
+  const [toggle, setToggle] = useState(true)
+  //condicion ? true : false
   return (
     <>
       <Header />
-      <Boton
-        type={"success"}
-        style={{ width: "200px" }}
-        label={"Aumentar Count"}
-        onClick={aumentar}
-      />
-      <Boton label={"Restar Count"} type={"danger"} onClick={restar} />
-      <h1>Hola coders! {count}</h1>
-      <h1>{texto}</h1>
-      <Boton label={"Despedirme"} type={"primary"} onClick={despedirme} />
-
+      {toggle ? <Counter /> : null}
+      <button onClick={() => setToggle(!toggle)}>
+        Montar/Desmontar Componente
+      </button>
       <ItemListContainer />
     </>
-  );
+  )
 }
 
-export default App;
+export default App
