@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import ItemList from './ItemList'
 
-const ItemListContainer = () => {
+const ItemListContainer = ({ greeting }) => {
   const [categoria, setCategoria] = useState('')
 
   const productos = [
@@ -13,7 +13,7 @@ const ItemListContainer = () => {
     },
     {
       id: 2,
-      titulo: 'Producto 2',
+      titulo: 'Producto 1',
       descripcion: 'Descripcion 2',
       precio: '100',
     },
@@ -37,7 +37,40 @@ const ItemListContainer = () => {
     },
   ]
 
-  return <ItemList productos={productos} />
+  const promesa = new Promise((resolve, reject) => {
+    resolve('Promesa resuelta')
+    // reject('Promesa no cumplida')
+  })
+
+  promesa
+    .then(res => {
+      // console.log('Result: ', res)
+    })
+    .catch(err => {
+      console.log('Error: ', err)
+    })
+
+  const promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(productos)
+      // reject('Error')
+    }, 3000)
+  })
+
+  promise
+    .then(res => {
+      // console.log(res)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+
+  return (
+    <div>
+      <h1>{greeting}</h1>
+      <ItemList productos={productos} />
+    </div>
+  )
 }
 
 export default ItemListContainer
