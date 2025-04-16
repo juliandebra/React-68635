@@ -1,22 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Item from './Item'
 
 const ItemList = ({ productos }) => {
-  console.log(productos)
+  const url = 'https://pokeapi.co/api/v2/pokemon/ditto'
+  const [poke, setPoke] = useState({})
 
-  const mapList = productos.map(producto => {
-    // console.log(producto)
-    return (
-      <div>
-        <h3>{producto.titulo}</h3>
-      </div>
-    )
-  })
+  useEffect(() => {
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        setPoke(data)
+        console.log(data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }, [])
 
-  console.log(mapList)
   return (
     <div>
-      {mapList}
+      {poke.name}
       {productos.map(e => (
         <Item
           key={e.id}

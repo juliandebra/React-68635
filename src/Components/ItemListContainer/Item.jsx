@@ -21,7 +21,7 @@ const Item = ({ id, titulo, descripcion, precio }) => {
               console.log('PRODUCTO ID ', id)
             }}
           />
-          <Counter />
+          {/* <Counter /> */}
         </Card.Body>
       </Card>
     </div>
