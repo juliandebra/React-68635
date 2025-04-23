@@ -4,24 +4,25 @@ import Boton from '../Boton/Boton'
 import Counter from '../Counter'
 import styles from './Item.module.css'
 // console.log(styles)
-const Item = ({ id, titulo, descripcion, precio }) => {
+const Item = ({ id, title, description, price, image, children }) => {
   return (
     <div>
       <Card style={{ width: '18rem' }}>
-        <Card.Img variant='top' src='holder.js/100px180' />
+        <Card.Img variant='top' src={image} />
         <Card.Body>
-          <Card.Title>{titulo}</Card.Title>
-          <Card.Text className={styles.description}>{descripcion}</Card.Text>
-          <Card.Text>{precio}</Card.Text>
+          <Card.Title>{title}</Card.Title>
+          <Card.Text className={styles.description}>{description}</Card.Text>
+          <Card.Text>{price}</Card.Text>
           <Boton
             type='success'
             label='Ver producto'
             onClick={() => {
-              console.log(titulo)
+              console.log(title)
               console.log('PRODUCTO ID ', id)
             }}
           />
-          {/* <Counter /> */}
+          {children}
+          <Counter />
         </Card.Body>
       </Card>
     </div>

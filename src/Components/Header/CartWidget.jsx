@@ -1,8 +1,8 @@
-import React from 'react'
+import styles from './Header.module.css'
 
 const CartWidget = () => {
   return (
-    <div className='cartwidget'>
+    <div className={styles.cartWidget}>
       <p>
         🛒 <span>0</span>
       </p>
