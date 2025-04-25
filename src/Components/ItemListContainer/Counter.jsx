@@ -1,5 +1,5 @@
 import { useState } from 'react'
-
+import styles from './Item.module.css'
 const Counter = () => {
   const [contador, setContador] = useState(0)
   const sumar = () => {
@@ -10,7 +10,7 @@ const Counter = () => {
   }
 
   return (
-    <div>
+    <div className={styles.btnGrp}>
       <button onClick={restar}>-</button>
       <h3>{contador}</h3>
       <button onClick={sumar}>+</button>

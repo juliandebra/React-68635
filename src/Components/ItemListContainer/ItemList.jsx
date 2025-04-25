@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Item from './Item'
-
+import styles from './Item.module.css'
 const ItemList = ({ productos }) => {
   return (
-    <div>
+    <div className={styles['list-container']}>
       {productos.map(e => (
         <Item
           key={e.id}

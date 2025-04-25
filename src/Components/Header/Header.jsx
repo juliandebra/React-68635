@@ -1,17 +1,39 @@
 import React from 'react'
-import { Container, Nav, Navbar } from 'react-bootstrap'
+import { Button, Container, Dropdown, Nav, Navbar } from 'react-bootstrap'
 import CartWidget from './CartWidget'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Header = () => {
+  const navigate = useNavigate()
+
   return (
     <>
       <Navbar bg='dark' data-bs-theme='dark'>
         <Container>
           <Navbar.Brand href='#home'>Navbar</Navbar.Brand>
           <Nav className='me-auto'>
-            <Nav.Link href='#home'>Home</Nav.Link>
-            <Nav.Link href='#features'>Features</Nav.Link>
-            <Nav.Link href='#pricing'>Pricing</Nav.Link>
+            <Link to='/'>Home</Link>
+
+            <Link to='/about'>About</Link>
+
+            <Dropdown>
+              <Dropdown.Toggle variant='success' id='dropdown-basic'>
+                Categories
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item>
+                  <Link to='/category/men'>Clothing</Link>
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  <Link to='/category/electronics'>Electronics</Link>
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  <Link to='/category/jewelery'>Jewelery</Link>
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+            {/* <Button onClick={() => navigate(-1)}>Volver para atrás</Button> */}
           </Nav>
         </Container>
         <CartWidget />

@@ -1,2 +1,28 @@
 .description {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.list-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.btnGrp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+.btnGrp button {
+  margin: 10px;
+  background-color: darkslategray;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 5px 5px 5px 5px;
+  width: 30px;
+  transition: 0.2s;
+}
+.btnGrp button:hover {
+  box-shadow: 3px 3px 5px #000;
 }

@@ -1,11 +1,12 @@
+import { Link } from 'react-router-dom'
 import styles from './Header.module.css'
 
 const CartWidget = () => {
   return (
     <div className={styles.cartWidget}>
-      <p>
+      <Link to='/cart'>
         🛒 <span>0</span>
-      </p>
+      </Link>
     </div>
   )
 }
