@@ -4,6 +4,7 @@ import ItemDetailContainer from './pages/ItemDetailContainer'
 import Cart from './pages/Cart'
 import Checkout from './pages/Checkout'
 import About from './pages/About'
+import { useEffect } from 'react'
 
 function App() {
   return (

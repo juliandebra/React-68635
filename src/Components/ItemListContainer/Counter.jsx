@@ -8,7 +8,6 @@ const Counter = () => {
   const restar = () => {
     setContador(contador - 1)
   }
-
   return (
     <div className={styles.btnGrp}>
       <button onClick={restar}>-</button>

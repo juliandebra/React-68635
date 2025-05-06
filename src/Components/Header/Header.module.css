@@ -1,4 +1,10 @@
 .cartWidget {
   color: white;
   font-size: 28px;
+  text-decoration: none;
+}
+.navLink {
+  margin: 10px;
+  text-decoration: none;
+  color: white;
 }

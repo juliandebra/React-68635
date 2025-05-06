@@ -12,9 +12,13 @@ const Header = () => {
         <Container>
           <Navbar.Brand href='#home'>Navbar</Navbar.Brand>
           <Nav className='me-auto'>
-            <Link to='/'>Home</Link>
+            <Link className='nav-link' to='/'>
+              Home
+            </Link>
 
-            <Link to='/about'>About</Link>
+            <Link className='nav-link' to='/about'>
+              About
+            </Link>
 
             <Dropdown>
               <Dropdown.Toggle variant='success' id='dropdown-basic'>
