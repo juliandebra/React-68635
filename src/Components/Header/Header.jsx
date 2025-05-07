@@ -4,6 +4,7 @@ import CartWidget from './CartWidget'
 import { Link, useNavigate } from 'react-router-dom'
 
 const Header = () => {
+  // console.log(prop)
   const navigate = useNavigate()
 
   return (
@@ -37,7 +38,6 @@ const Header = () => {
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
-            {/* <Button onClick={() => navigate(-1)}>Volver para atrás</Button> */}
           </Nav>
         </Container>
         <CartWidget />

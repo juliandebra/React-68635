@@ -7,11 +7,9 @@ const ItemListContainer = () => {
   const { category } = useParams()
 
   useEffect(() => {
-    console.log('Esto se ejecuta cada vez que category se modifica')
     fetch('https://fakestoreapi.com/products')
       .then(response => response.json())
       .then(data => {
-        console.log(data)
         setProductos(
           category
             ? data.filter(prod => prod.category.includes(category))

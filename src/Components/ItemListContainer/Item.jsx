@@ -20,7 +20,7 @@ const Item = ({ id, title, description, price, image, children }) => {
           <Card.Title>{title}</Card.Title>
           <Card.Text className={styles.description}>{description}</Card.Text>
           <Card.Text>{price}</Card.Text>
-          <Counter />
+
           <Boton
             type='success'
             label='Ver producto'
