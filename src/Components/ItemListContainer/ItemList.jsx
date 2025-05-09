@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import Item from './Item'
-import styles from './Item.module.css'
+import React, { useEffect, useState } from "react";
+import Item from "./Item";
+import styles from "./Item.module.css";
 const ItemList = ({ productos }) => {
   return (
-    <div className={styles['list-container']}>
-      {productos.map(e => (
+    <div className={styles["list-container"]}>
+      {productos.map((e) => (
         <Item
           key={e.id}
           image={e.image}
@@ -15,7 +15,7 @@ const ItemList = ({ productos }) => {
         />
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default ItemList
+export default ItemList;

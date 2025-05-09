@@ -11,3 +11,13 @@
 #root {
   text-align: center;
 }
+
+.text-large {
+  font-size: 25px;
+}
+.color-red {
+  color: red;
+}
+.color-blue {
+  color: blue;
+}
