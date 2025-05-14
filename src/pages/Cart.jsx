@@ -1,23 +1,23 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import NotFound from "../Components/NotFound/NotFound";
-import { useCartStates } from "../context/ContextProvider";
-
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import NotFound from '../Components/NotFound/NotFound'
+import { useCartStates } from '../context/ContextProvider'
+import Checkout from './Checkout'
 const Cart = () => {
-  const { cart, total, setCart } = useCartStates();
-  const navigate = useNavigate();
+  const { cart, total, setCart } = useCartStates()
+  const navigate = useNavigate()
 
   /**
    * @Functions
    */
   const irHome = () => {
-    navigate("/");
-  };
+    navigate('/')
+  }
 
-  const eliminarProducto = (id) => {
+  const eliminarProducto = id => {
     // FILTRAR EL ARRAY CART POR PRODUCTO ID
-    setCart(cart.filter((e) => e.id !== id));
-  };
+    setCart(cart.filter(e => e.id !== id))
+  }
 
   /**
    * @Components
@@ -25,12 +25,12 @@ const Cart = () => {
   if (!cart.length) {
     return (
       <NotFound
-        titulo={"Carrito Vacio"}
-        descripcion="Tienes que agregar productos en el Home"
+        titulo={'Carrito Vacio'}
+        descripcion='Tienes que agregar productos en el Home'
         onClick={irHome}
-        label={"Ir a Home"}
+        label={'Ir a Home'}
       />
-    );
+    )
   }
 
   return (
@@ -39,16 +39,16 @@ const Cart = () => {
       {/**
        * Mensaje not found
        */}
-      {cart.map((prod) => (
+      {cart.map(prod => (
         <div key={prod.id}>
           <h3>{prod.title}</h3>
-          <img src={prod.image} alt="" width={80} />
+          <img src={prod.image} alt='' width={80} />
           <h4>${prod.price}</h4>
           <h4>Cantidad: {prod.quantity}</h4>
           <h2>Subtotal: ${prod.price * prod.quantity}</h2>
           <button
             onClick={() => {
-              eliminarProducto(prod.id);
+              eliminarProducto(prod.id)
             }}
           >
             Eliminar
@@ -56,8 +56,9 @@ const Cart = () => {
         </div>
       ))}
       <h1>Precio final: ${total}</h1>
+      <Checkout />
     </div>
-  );
-};
+  )
+}
 
-export default Cart;
+export default Cart
