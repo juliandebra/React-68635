@@ -4,21 +4,13 @@ const CartStates = createContext()
 
 const ContextProvider = ({ children }) => {
   const [cart, setCart] = useState([])
-  const total = cart.reduce(
-    (acumulador, producto) => acumulador + producto.price * producto.quantity,
-    0
-  )
-  const cantidadItems = cart.reduce(
-    (acumulador, producto) => acumulador + producto.quantity,
-    0
-  )
-  //   const [message, setMessage] = useState('Lo logré')
-  console.log(cart)
+  const total = cart.reduce((acc, prod) => acc + prod.price * prod.quantity, 0)
+  const cantidadItems = cart.reduce((acc, prod) => acc + prod.quantity, 0)
+  console.log('cart', cart)
   return (
     <CartStates.Provider
       value={{
         cart,
-        // message,
         setCart,
         total,
         cantidadItems,

@@ -6,9 +6,9 @@ import { getProducts } from '../services/firebaseServices'
 const ItemListContainer = () => {
   const [productos, setProductos] = useState([])
   const { category } = useParams()
+
   useEffect(() => {
     getProducts().then(res => {
-      console.log('res', res)
       setProductos(res)
     })
   }, [category])

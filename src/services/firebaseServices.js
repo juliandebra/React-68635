@@ -1,4 +1,11 @@
-import { collection, doc, getDoc, getDocs } from 'firebase/firestore'
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  writeBatch,
+} from 'firebase/firestore'
 import { db } from '../config/firebaseConfig'
 
 export const getProducts = async () => {
@@ -18,8 +25,32 @@ export const getProductById = async id => {
 //Servicio para llamar lista filtrada por categoría (query)
 //query where
 
-//Servicio para crear la orden en la collection Ordenes
-//addDoc
+export const createOrder = async newOrder => {
+  const orderCollection = collection(db, 'Ordenes')
+  const orderCreated = await addDoc(orderCollection, newOrder)
+  return orderCreated
+}
 
 //EXTRA: Servicio para actualizar stock
-// updateDoc
+// writeBatch
+export const createOrderAndUpdateStock = async newOrder => {
+  const batch = writeBatch(db)
+
+  const orderCollection = collection(db, 'Ordenes')
+  const orderCreated = doc(orderCollection)
+  batch.set(orderCreated, newOrder)
+  console.log('orderCreated', orderCreated)
+
+  newOrder.items.forEach(prod => {
+    const producto = doc(db, 'Productos', prod.id)
+    console.log('producto', producto)
+    batch.update(producto, { stock: prod.stock - prod.quantity })
+  })
+
+  try {
+    await batch.commit()
+    return orderCreated
+  } catch (err) {
+    console.log(err)
+  }
+}

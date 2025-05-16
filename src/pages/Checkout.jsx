@@ -1,5 +1,11 @@
 import React, { useState } from 'react'
 import { validateName } from '../helpers/validations'
+import { useCartStates } from '../context/ContextProvider'
+import {
+  createOrder,
+  createOrderAndUpdateStock,
+} from '../services/firebaseServices'
+import { useNavigate } from 'react-router-dom'
 
 const Checkout = () => {
   const [user, setUser] = useState({
@@ -7,27 +13,35 @@ const Checkout = () => {
     email: '',
     tel: '',
   })
+  const { cart, total, setCart } = useCartStates()
 
-  console.log('user', user)
+  const navigate = useNavigate()
 
   const handleChange = event => {
-    setUser({ ...user, [event.target.name]: event.target.value })
+    const { name, value } = event.target
+    setUser({ ...user, [name]: value })
   }
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault()
     const regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
+
     //Validaciones
-    if (validateName(user.name) && regexEmail.test(user.email)) {
-      alert('Compra finalizada')
-      // Envio a firebase
-      // Datos de usuario
-      // Total de compra
-      // Items del carrito
-      //
-    } else {
+    if (!validateName(user.name) && !regexEmail.test(user.email)) {
       alert('Campos invalidos')
+      return
     }
+
+    const newOrder = {
+      buyer: user,
+      items: cart,
+      total: total,
+    }
+    console.log('newOrder', newOrder)
+    const res = await createOrderAndUpdateStock(newOrder)
+    alert('Gracias por tu compra. Tu id de compra es: ' + res.id)
+    setCart([])
+    // navigate('/')
   }
 
   return (
@@ -56,21 +70,8 @@ const Checkout = () => {
         />
         <button>Finalizar compra</button>
       </form>
-
-      {/* <h3>Nombre: {user.name}</h3>
-      <h3>Email: {user.email}</h3>
-      <h3>Telefono: {user.tel}</h3> */}
     </div>
   )
 }
 
 export default Checkout
-
-//Como se trabaja en JS vanilla
-// const form = document.querySelector('form')
-
-// form.addEventListener('submit', () => {
-//   const name = document.getElementById('input-name').value
-
-//   //Envio mi info a  una api
-// })
